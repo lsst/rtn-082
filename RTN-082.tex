@@ -1,4 +1,4 @@
-\documentclass[OPS,authoryear,toc]{lsstdoc}
+\documentclass[OPS,lsstdraft,authoryear,toc]{lsstdoc}
 \input{meta}
 
 % Package imports go here.
@@ -8,13 +8,15 @@
 %If you want glossaries
 %\input{aglossary.tex}
 %\makeglossaries
+\def\PZ{\emph{Pixel Zone~}}
 
-\title{Pixel zone system security plan}
+
+\title{\PZ system security plan}
 
 % This can write metadata into the PDF.
 % Update keywords and author information as necessary.
 \hypersetup{
-    pdftitle={Pixel zone system security plan},
+    pdftitle={\PZ system security plan},
     pdfauthor={William O'Mullane},
     pdfkeywords={}
 }
@@ -35,7 +37,7 @@ William O'Mullane
 % \setDocCurator{The Curator of this Document}
 
 \setDocAbstract{%
-This document provides the mapping to NIST800-171 for the  Rubin pixel zone.
+This document provides the mapping to NIST800-171 for the  Rubin \PZ.
 }
 
 % Change history defined here.
@@ -43,7 +45,7 @@ This document provides the mapping to NIST800-171 for the  Rubin pixel zone.
 % Fields: VERSION, DATE, DESCRIPTION, OWNER NAME.
 % See LPM-51 for version number policy.
 \setDocChangeRecord{%
-  \addtohist{1}{YYYY-MM-DD}{Unreleased.}{William O'Mullane}
+  \addtohist{0.1}{2024-07-05}{Initial Draft}{William O'Mullane}
 }
 
 
@@ -54,10 +56,13 @@ This document provides the mapping to NIST800-171 for the  Rubin pixel zone.
 % Frequently for a technote we do not want a title page  uncomment this to remove the title page and changelog.
 % use \mkshorttitle to remove the extra pages
 
-% ADD CONTENT HERE
-% You can also use the \input command to include several content files.
+\input{body}
 
 \appendix
+%NIST compliance from google sheet
+\section{Compliance with NIST800.171} \label{sec:compliance}
+\input{compliance}
+
 % Include all the relevant bib files.
 % https://lsst-texmf.lsst.io/lsstdoc.html#bibliographies
 \section{References} \label{sec:bib}
