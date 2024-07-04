@@ -31,7 +31,7 @@ Account creation is tracked with Jira tickets and requires manager approval (AC-
 Unix groups are used to restrict individual user access and effectively provide \emph{account types} (AC-03  Access Enforcement).
 Sudo is used for escalation by users who are allowed privileged access - use is logged.
 
-\citeds{DMTN-199} defines the control flow for pixel data (AC-04  Information Flow Enforcement)_.
+\citeds{DMTN-199} defines the control flow for pixel data (AC-04  Information Flow Enforcement).
 
 Accounts are locked out after 6 failed attempts to log in (AC-07  Unsuccessful Logon Attempts).
 
@@ -149,33 +149,46 @@ Rubin has an acceptable use policy  augmented by \citeds{RTN-073}  and \citeds{D
 
 \subsection{Personnel Security (PS)} \label{sec:PS}
 Only  team members will have access to embargo images.
-All staff are known individuals screened on hiring.
+All staff are known individuals screened on hiring (PS-01  Policy and Procedures, PS-03  Personnel Screening).
 In kind contributors working with data  are known scientists and all go though FACTs checks to get accounts at USDF.
+
+Where appropriate on termination all account access is removed - some off-boards remain collaborators (PS-04  Personnel Termination).
 
 
 \subsection{Risk Assessment (RA)} \label{sec:RA}
-This is part of our regular risk assessment process \citeds{rdo-71} but we also look in depth at specific applications.
+This is part of our regular risk assessment process \citeds{rdo-71} but we also look in depth at specific applications(RA-01  Policy and Procedures).
+
 Mostly we have concentrated the application exposure in phalanx which is carefully assessed and monitored.
+However we do perform specific security risk assessment where it is considered most needed e.g. \citeds{SQR-041} for the science platform which is one of our major attack surfaces (RA-03  Risk Assessment).
+
+We have conducted external PEN testing and shall do so annually in addition to using available scanning tools (RA-05  Vulnerability Monitoring and Scanning).
 
 \subsection{System and Services Acquisition (SA)} \label{sec:SA}
-Security for our external facing applications have been encapsulated in Phalanx.
+Security for our external facing applications have been encapsulated in Phalanx. (SA-01  Policy and Procedures)
 This allows a single team to take care of AAA for all applications.
 The number of applications which can touch the embargoed data is also small and they are behind the 2Fa VPN.
 
+Our policy is to replace components before they reach EOL (SA-22  Unsupported System Components).
+
 
 \subsection{System and Communications Protection (SC)} \label{sec:SC}
-Embargo data are kept on encrypted disks using OS level encryption.
-Data transmission to SLAC is via  secure routers with AES-256 encryption.
+\citeds{DMTN-286}i and \citeds{SITCOMTN-076} cover communication  for embargoed data (SC-01  Policy and Procedures).
 
+Embargo data are kept on encrypted disks using OS level encryption (SC-04  Information in Shared System Resources).
 2FA VPN is required to access the \PZ.
-We use scanning devices on our network border.
 We isolate internal traffic on different VLANs.
 Bastion hosts are used for access to deeper internal systems.
 
-Information sharing ground rules are  covered in \citeds{DMTN-286} and \citeds{SITCOMTN-076}.
+Border firewalls prevent some repeated attacks, confirmed by PEN testing (SC-05  Denial-of-service Protection, SC-07  Boundary Protection).
 
-This covers  controls for transmission confidentiality and integrity (SC-8, SC-8(1)) and
-protection of information at rest (SC-28, SC-28(1)).
+Data transmission to SLAC is via  secure routers with AES-256 encryption (SC-08  Transmission Confidentiality and Integrity).
+
+Connections are rest each 24 hour period (SC-10  Network Disconnect).
+
+Encryption keys are managed by specific key services  (SC-12  Cryptographic Key Establishment and Management).
+
+Embargoed data shall be encrypted at rest (SC-28  Protection of Information at Rest).
+
 
 \subsection{ System and Information Integrity (SI)} \label{sec:SI}
 We respond immediately to any security issue.
