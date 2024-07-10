@@ -44,7 +44,7 @@ g. Notify account managers and designated personnel or roles within:
 
 3. [Assignment: organization-defined time period] when system usage or the need-to-know changes for an individual.
 
-h. Require that users log out of the system after [Assignment: organization-defined time period] of expected inactivity or when [Assignment: organization-defined circumstances].}&{Y}&{Y}&{IPA groups are in place for summit and unix groups at SLAC which restrict privileges of individual users.
+h. Require that users log out of the system after [Assignment: organization-defined time period] of expected inactivity or when [Assignment: organization-defined circumstances].}&{Y}&{Y}&{IPA groups are in place for summit  which restrict privileges of individual users.
 Off boarding and account disabling  in place - considering active account with monthly reaffirmation instead. 
 See https://ittn-010.lsst.io/} \\ \hline
 {03.01.02 Access Enforcement
@@ -56,7 +56,7 @@ Enforce approved authorizations for controlling the flow of CUI within the syste
 
 a. Identify the duties of individuals requiring separation.
 
-b. Define system access authorizations to support separation of duties.}&{P}&{N}&{Principle of least privilege is applied. Some users have access to hosts that is unneeded.} \\ \hline
+b. Define system access authorizations to support separation of duties.}&{P}&{P}&{Principle of least privilege is applied. Some users have access to hosts that is unneeded.} \\ \hline
 {03.01.05 Least Privilege
 
 a. Allow only authorized system access for users (or processes acting on behalf of users) that is necessary to accomplish assigned organizational tasks.
@@ -85,7 +85,8 @@ a. Enforce a limit of [Assignment: organization-defined number] consecutive inva
 
 b. Automatically [Selection (one or more): lock the account or node for an [Assignment: organization-defined time period]; lock the account or node until released by an administrator; delay next logon prompt; notify system administrator; take other action] when the maximum number of unsuccessful attempts is exceeded.
 }&{Y}&{Y}&{Web Services such as love, foreman, ipa console, nublado, etc. may need rate limiting. 
-We don't use passwords in ssh hosts, only ssh keys (which many consider more secure).  We are not aware of a retry limit for ssh-key access; an appropriate extra level of security would be to not use the default port 22. However, we do limit attempts to 6 with a block of 600 minutes, which will effectively block failed SUDO logins.} \\ \hline
+We don't use passwords in ssh hosts, only ssh keys (which many consider more secure).  
+We are not aware of a retry limit for ssh-key access; an appropriate extra level of security would be to not use the default port 22. However, we do limit attempts to 6 with a block of 600 minutes, which will effectively block failed SUDO logins.} \\ \hline
 {03.01.09 System Use Notification. 
 
 Display a system use notification message with privacy and security notices
@@ -145,7 +146,7 @@ c. Permit authorized individuals to use external systems to access the organizat
 
 d. Restrict the use of organization-controlled portable storage devices by authorized individuals on external systems.}&{N}&{Y}&{We use mac address for laptops and personal mobile phones can not connect to the control network. 
 We also have a separation with the LHN SSID and VLANs.
-We do not allow external storage devices ont eh contrl network.} \\ \hline
+We do not allow external storage devices on the pixel zone.} \\ \hline
 {03.01.21 Withdrawn}&{W}&{}&{Withdrawn in revision 3} \\ \hline
 {03.01.22 Publicly Accessible Content
 
@@ -200,12 +201,12 @@ a. Include the following content in audit records:
 
 6. Identity of the individuals, subjects, objects, or entities associated with the event
 
-b. Provide additional information for audit records as needed.}&{N}&{Y}& \\ \hline
+b. Provide additional information for audit records as needed.}&{Y}&{Y}& \\ \hline
 {03.03.03 Audit Record Generation
 
 a. Generate audit records for the selected event types and audit record content specified in 03.03.01 and 03.03.02.
 
-b. Retain audit records for a time period consistent with the records retention policy.}&{P}&{Y}&{We may look for a third party contract for this.} \\ \hline
+b. Retain audit records for a time period consistent with the records retention policy.}&{Y}&{Y}&{Observability system} \\ \hline
 {03.03.04 Response to Audit Logging Process Failures
 
 a. Alert organizational personnel or roles within [Assignment: organization-defined time period] in the event of an audit logging process failure.
@@ -264,7 +265,7 @@ a. Analyze changes to the system to determine potential security impacts prior t
 b. Verify that the security requirements for the system continue to be satisfied after the system changes have been implemented.}&{Y}&{Y}&{Continuous integrations checks on puppet and phalanx check any changes prior to test deploy which is done prior to production. } \\ \hline
 {03.04.05 Access Restrictions for Change
 
-Define, document, approve, and enforce physical and logical access restrictions associated with changes to the system.}&{Y}&{Y}&{At infrastructure level this is is controlled by the Chile DevOps team and the SLAC IT team.} \\ \hline
+Define, document, approve, and enforce physical and logical access restrictions associated with changes to the system.}&{Y}&{Y}&{At infrastructure level this is is controlled by the Chile DevOps team.} \\ \hline
 {03.04.06 Least Functionality
 
 a. Configure the system to provide only mission-essential capabilities.
@@ -334,11 +335,11 @@ b. Select and assign an identifier that identifies an individual, group, role, s
 
 c. Prevent the reuse of identifiers for [Assignment: organization-defined time period].
 
-d. Manage individual identifiers by uniquely identifying each individual as [Assignment: organization-defined characteristic identifying individual status].}&{P}&{P}&{a. Jira tickets are used and management approval requested
+d. Manage individual identifiers by uniquely identifying each individual as [Assignment: organization-defined characteristic identifying individual status].}&{Y}&{Y}&{a. Jira tickets are used and management approval requested
 
 b. Unique id is chosen
 
-c. Our IPA system does not support this. 
+c. last 10 passwords can not be used
 
 d. Single sign on across all systems uses same id.
 
@@ -385,7 +386,7 @@ d. Change default authenticators at first use.
 
 e. Change or refresh authenticators [Assignment: organization-defined frequency] or when the following events occur: [Assignment: organization-defined events].
 
-f. Protect authenticator content from unauthorized disclosure and modification.}&{N}&{N}&{This applies mainly to passwords for us. We pass passwords with onetimesecret and then ask the user to change it immediately. } \\ \hline
+f. Protect authenticator content from unauthorized disclosure and modification.}&{Y}&{Y}&{This applies mainly to passwords for us. We pass passwords with onetimesecret and then ask the user to change it immediately. } \\ \hline
 {3.6 INCIDENT RESPONSE}&&& \\ \hline
 {03.06.01 Incident Handling
 
@@ -454,7 +455,7 @@ c. Prevent the removal of system maintenance equipment containing CUI by verifyi
 
 b. We run scans on downloaded media.
 
-c. Maintenance equipment doe snot have CUI on it. } \\ \hline
+c. Maintenance equipment does not have CUI on it. } \\ \hline
 {03.07.05 Nonlocal Maintenance
 
 a. Approve and monitor nonlocal maintenance and diagnostic activities.
@@ -500,7 +501,7 @@ c. Document activities associated with the transport of system media that contai
 
 a. Restrict or prohibit the use of [Assignment: organization-defined types of system media].
 
-b. Prohibit the use of removable system media without an identifiable owner.}&{N}&{Y}&{Can be rolled out with puppet but there are some servers require USB to be enabled but are in the server room. We disable USB on machines outside the server room.} \\ \hline
+b. Prohibit the use of removable system media without an identifiable owner.}&{N}&{Y}&{Can be rolled out with puppet but there are some servers require USB to be enabled but are in the server room. We can disable USB disk mounts at OS level. The machines and filesystem are encrypted so even if someone rebooted a node from a device to allow mounting USB they still could not get any data.} \\ \hline
 {03.08.08 Withdrawn}&{W}&{}&{Withdrawn in revision 3} \\ \hline
 {03.08.09 System Backup – Cryptographic Protection
 
@@ -593,7 +594,7 @@ c. Update system vulnerabilities to be scanned [Assignment: organization-defined
 
 b. We patch for vulnerabilities within 24 hours. 
 
-c. third part applications are used} \\ \hline
+c. third part applications are used for scanning} \\ \hline
 {03.11.03 Withdrawn}&{W}&& \\ \hline
 {03.11.04 Risk Response
 
@@ -648,7 +649,7 @@ Prevent unauthorized and unintended information transfer via shared system resou
 {03.13.05 Withdrawn}&{W}&& \\ \hline
 {03.13.06 Network Communications – Deny by Default – Allow by Exception
 
-Deny network communications traffic by default, and allow network communications traffic by exception.}&{Y}&{Y}&{Routing ansd whitelisting is quite explicit.} \\ \hline
+Deny network communications traffic by default, and allow network communications traffic by exception.}&{Y}&{Y}&{Routing and whitelisting is quite explicit.} \\ \hline
 {03.13.07 Withdrawn}&{ }&{}&{Withdrawn in revision 3} \\ \hline
 {03.13.08 Transmission and Storage Confidentiality
 
@@ -661,7 +662,7 @@ Terminate the network connection associated with a communications session at the
 Establish and manage cryptographic keys in the system in accordance with the following key management requirements: [Assignment: organization-defined requirements for key generation, distribution, storage, access, and destruction].}&{Y}&{Y}& \\ \hline
 {03.13.11 Cryptographic Protection
 
-Implement the following types of cryptography to protect the confidentiality of CUI: [Assignment: organization-defined types of cryptography].}&{Y}&{Y}&{Disk encryption OS level and AES128 on the wire.} \\ \hline
+Implement the following types of cryptography to protect the confidentiality of CUI: [Assignment: organization-defined types of cryptography].}&{Y}&{Y}&{Disk encryption OS level and AES-256 on the wire.} \\ \hline
 {03.13.12 Collaborative Computing Devices and Applications
 
 a. Prohibit the remote activation of collaborative computing devices and applications with the following exceptions: [Assignment: organization-defined exceptions where remote activation is to be allowed].
@@ -744,7 +745,7 @@ a. Develop a system security plan that:
 
 b. Review and update the system security plan [Assignment: organization-defined frequency].
 
-c. Protect the system security plan from unauthorized disclosure.}&{Y}&{Y}&{a. RTN-030
+c. Protect the system security plan from unauthorized disclosure.}&{Y}&{Y}&{a. RTN-082
 
 b. review at least annually
 
@@ -761,7 +762,7 @@ d. Review and update the rules of behavior [Assignment: organization-defined fre
 {3.16. System and Services Acquisition}&&& \\ \hline
 {03.16.01 Security Engineering Principles
 
-Apply the following systems security engineering principles to the development or modification of the system and system components: [Assignment: organization- defined systems security engineering principles].}&{P}&{Y}& \\ \hline
+Apply the following systems security engineering principles to the development or modification of the system and system components: [Assignment: organization- defined systems security engineering principles].}&{Y}&{Y}&{See RTN-082 Section 2.15} \\ \hline
 {03.16.02 Unsupported System Components
 
 a. Replace system components when support for the components is no longer available from the developer, vendor, or manufacturer.
@@ -791,9 +792,9 @@ a. Establish a process for identifying and addressing weaknesses or deficiencies
 
 b. Enforce the following security requirements to protect against supply chain risks to the system, system components, or system services and to limit the harm or consequences from supply chain-related events: [Assignment: organization- defined security requirements].}&{N}&{N}&{Not applicable for this project.} \\ \hline
 \textbf{Total NIST800-171 requirements}&\textbf{}&\textbf{98}& \\ \hline
-\textbf{Total Rubin Intends to comply fully with }&\textbf{}&\textbf{89}& \\ \hline
-\textbf{Total Rubin Intends not to comply with }&\textbf{}&\textbf{7}& \\ \hline
+\textbf{Total Rubin Intends to comply fully with }&\textbf{}&\textbf{91}& \\ \hline
+\textbf{Total Rubin Intends not to comply with }&\textbf{}&\textbf{5}& \\ \hline
 \textbf{Total Rubin Intends to partially comply with }&\textbf{}&\textbf{2}& \\ \hline
-\textbf{Total Rubin Complies with in 2024}&\textbf{}&\textbf{79}& \\ \hline
-\textbf{Total Rubin Partially Complies with in 2024}&\textbf{}&\textbf{7}& \\ \hline
+\textbf{Total Rubin Complies with in 2024}&\textbf{}&\textbf{84}& \\ \hline
+\textbf{Total Rubin Partially Complies with in 2024}&\textbf{}&\textbf{4}& \\ \hline
 \end{longtable} \normalsize

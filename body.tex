@@ -173,8 +173,20 @@ We have conducted external PEN testing and shall do so annually in addition to u
 
 \subsection{System and Services Acquisition (SA)} \label{sec:SA}
 Security for our external facing applications have been encapsulated in Phalanx. (SA-01  Policy and Procedures)
-This allows a single team to take care of AAA for all applications.
+This allows a single team to take care of AAA for all applications  to minimize  the  attack surface.
 The number of applications which can touch the embargoed data is also small and they are behind the 2Fa VPN.
+
+We apply several  principles: (SA-08  Security and Privacy Engineering Principles):
+
+\begin{itemize}
+\item Least Privilege : we try to reduce the number of accounts with privileges
+\item Minimize attack surface:  phalanx really helps with this but also using 2FA and VPN for pixel zone.
+\item Access control mechanisms: we use tokens for inter application access
+\item Defense in depth: we are attempting to know when we have been hit
+\item Open design: our security does not rely on secrecy of design our designs are public
+\item Economy of mechanism: we always attempt the simplest solution
+\end{itemize}
+
 
 Our policy is to replace components before they reach EOL (SA-22  Unsupported System Components).
 
