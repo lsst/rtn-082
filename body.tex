@@ -67,7 +67,13 @@ Training will be renewed annually.
 
 
 \subsection{Audit and Accountability (AU)} \label{sec:AU}
-An \emph{Observability system} has been built, on contract \citeds{ITTN-070}, to make this information useful to find incursions and anomalies(AU-02  Event Logging,  AU-03  Content of Audit Records).
+An \emph{Observability system} has been built, on contract \citeds{ITTN-070}, to make this information useful to find incursions and anomalies(AU-02  Event Logging,  AU-03  Content of Audit Records, AU-07  Audit Record Reduction and Report Generation, AU-12  Audit Record Generation).
+
+Audit records have UTC timestamps (AU-08  Time Stamps).
+
+We shall have sufficient log storage for 2 years of logs (AU-04  Audit Log Storage Capacity).
+
+Logs shall be kept for at least 2 years (AU-11  Audit Record Retention).
 
 Squadcast is used for alerting on system failures (AU-05  Response to Audit Logging Process Failures).
 
@@ -133,14 +139,14 @@ Pixel data exists on disk in only three locations during the embargo period, the
 
 \subsection{Physical and Environmental Protection (PE)} \label{sec:PE}
 Computer rooms have key card access and are restricted to a limited number of personnel (PE-02  Physical Access Authorizations, PE-03  Physical Access Control).
-Racks have further locks and door sensors installed().
+Racks have further locks and door sensors installed.
 There are cameras with motion detection functions installed in the computer rooms.
 
 The DWDM (transmission devices) are within the controlled computer room in a locked rack (PE-04  Access Control for Transmission).
 
 Access is logged and logs are kept for up to three years, all the equipment being installed is HID and complies with section 889 of the John S. McCain National Defense Authorization Act (NDAA) (PE-06  Monitoring Physical Access).
 
-Remote work is allowed  from anywhere with access vi 2FA VPN (PE-17  Alternate Work Site).
+Remote work is allowed  from anywhere with access via 2FA VPN (PE-17  Alternate Work Site).
 
 \subsection{Planning (PL)} \label{sec:PL}
 \citeds{RTN-030} provides pointers to the many information security related documents (PL-01  Policy and Procedures).
@@ -172,7 +178,7 @@ Our policy is to replace components before they reach EOL (SA-22  Unsupported Sy
 
 
 \subsection{System and Communications Protection (SC)} \label{sec:SC}
-\citeds{DMTN-286}i and \citeds{SITCOMTN-076} cover communication  for embargoed data (SC-01  Policy and Procedures).
+\citeds{DMTN-286} and \citeds{SITCOMTN-076} cover communication  for embargoed data (SC-01  Policy and Procedures).
 
 Embargo data are kept on encrypted disks using OS level encryption (SC-04  Information in Shared System Resources).
 2FA VPN is required to access the \PZ.
@@ -187,7 +193,7 @@ Connections are rest each 24 hour period (SC-10  Network Disconnect).
 
 Encryption keys are managed by specific key services  (SC-12  Cryptographic Key Establishment and Management).
 
-Embargoed data shall be encrypted at rest (SC-28  Protection of Information at Rest).
+Embargo data are kept on encrypted disks using OS level encryption at rest (SC-28  Protection of Information at Rest).
 
 
 \subsection{ System and Information Integrity (SI)} \label{sec:SI}
