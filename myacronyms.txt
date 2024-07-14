@@ -5,3 +5,20 @@
 #
 # Example:
 #   MIA:Missing In Action
+
+AC:Access Control
+CA:Certification, Accreditation, and Security Assessments
+CP: Contingency Planning
+IR:Incident Response
+AT:Awareness and Training 
+AU:Audit and Accountability 
+IA:Identification and Authentication 
+MA:Maintenance 
+MP:Media Protection 
+PE:Physical and Environmental Protection 
+PL:Planning 
+PS:Personnel Security 
+RA:Risk Assessment 
+SA:System and Services Acquisition 
+SC:System and Communications Protection 
+SI:System and Information Integrity 

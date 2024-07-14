@@ -1,6 +1,8 @@
 DOCTYPE = RTN
 DOCNUMBER = 082
 DOCNAME = $(DOCTYPE)-$(DOCNUMBER)
+GSHEET = 1o1jbFP6tHSAzvg_OsNI0-qmzIIQGbe2_rjjM94xic8w
+
 
 tex = $(filter-out $(wildcard *acronyms.tex) , $(wildcard *.tex))
 
@@ -23,7 +25,7 @@ $(DOCNAME).pdf: $(tex) meta.tex local.bib acronyms.tex
 
 # Acronym tool allows for selection of acronyms based on tags - you may want more than DM
 acronyms.tex: $(tex) myacronyms.txt
-	$(TEXMFHOME)/../bin/generateAcronyms.py -t "DM" $(tex)
+	$(TEXMFHOME)/../bin/generateAcronyms.py -t "SEC IT DM" $(tex)
 
 # If you want a glossary you must manually run generateAcronyms.py  -gu to put the \gls in your files.
 aglossary.tex :$(tex) myacronyms.txt
@@ -46,3 +48,9 @@ meta.tex: Makefile .FORCE
 	printf '\\newcommand{\\lsstDocNum}{$(DOCNUMBER)}\n' >>$@
 	printf '\\newcommand{\\vcsRevision}{$(GITVERSION)$(GITDIRTY)}\n' >>$@
 	printf '\\newcommand{\\vcsDate}{$(GITDATE)}\n' >>$@
+
+
+# call as needed not automating in this doc
+
+tables: .FORCE
+	makeTablesFromGoogle.py ${GSHEET}  matrixR3\!A1:F  

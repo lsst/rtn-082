@@ -1,0 +1,219 @@
+
+\section{Introduction and Scope}
+
+\VRO will observe the night sky with unprecedented frequency and depth.
+Per \citeds{DMTN-199}, \citeds{NIST.SP.800-171} is applicable to our pixel data.
+This document provide the security plan for the \PZ which encompasses the areas where data is held in NSF facilities.
+The SLAC facilities are covered in \emph{NEED REF}.
+
+In accordance with \citeds{FIPS200} and \citeds{DMTN-199} the  security category is :
+\begin{equation} \label{eq:SC}
+SC_{Pixel Zone} = \{({\bf confidentiality}, \text{moderate}), ({\bf integrity}, \text{low}), ({\bf availability}, \text{low})\}
+\end{equation}
+
+The technology implementation details may be found in \citeds{ittn-074}.
+
+This plan should be reviewed at least annually.
+
+
+\section{Minimum security requirements} \label{sec:secreq}
+\citeds{FIPS200} declares 17 security related areas that should be covered, each is given a sub section here.
+A detailed compliance with \citeds{NIST.SP.800-171} is given in \autoref{sec:compliance}.
+Here we also mention the controls, as outlined in the CUI overlay of \citeds{NIST.SP.800-171}, we aim to implement in each section.
+
+
+
+\subsection{Access Control (AC)} \label{sec:AC}
+Access to the \PZ is restricted to approved account holders. See \citeds{ITTN-010} and \citeds{ITTN-045} (AC-01  Policy and Procedures).
+
+Account creation is tracked with Jira tickets and requires manager approval (AC-02  Account Management).
+
+Unix groups are used to restrict individual user access and effectively provide \emph{account types} (AC-03  Access Enforcement).
+Sudo is used for escalation by users who are allowed privileged access - use is logged.
+
+\citeds{DMTN-199} defines the control flow for pixel data (AC-04  Information Flow Enforcement).
+
+Accounts are locked out after 6 failed attempts to log in (AC-07  Unsuccessful Logon Attempts).
+
+Message of the day shall declare the Pixel zone security (Use Notification AC-08).
+
+Sessions are terminated every 24 hours (AC-12  Session Termination).
+
+Remote access is granted via an group membership. 2FA VPN is required for any remote access (remote access AC-17).
+
+Access to summit WiFi is controlled via registered MAC address.
+Even on the summit WiFi VPN login is required to access the \PZ (wireless access AC-18).
+
+
+We do not allow pixel data to be copied to external devices (External System AC-20).
+
+We have no public access (AC-22  Publicly Accessible Content)
+
+We do not use specific \emph{-admin} accounts  - our team is small and we find such accounts less secure.
+
+We shall review group membership for summit access at least once per year.
+
+
+
+\subsection{Awareness and Training (AT)} \label{sec:AT}
+
+The access control plan \citep{ACP} indicates training etc.
+\citeds{RTN-073} provides guidelines for embargo data access.
+Specific guidelines on communication channels have been shared with users in \citeds{DMTN-286}.
+(AT-01  Policy and Procedures)
+
+Embargo training is mandatory for all users with access to pixel data within the embargo period. (AT-02  Literacy Training and Awareness)
+Training will be renewed annually.
+
+
+\subsection{Audit and Accountability (AU)} \label{sec:AU}
+An \emph{Observability system} has been built, on contract \citeds{ITTN-070}, to make this information useful to find incursions and anomalies(AU-02  Event Logging,  AU-03  Content of Audit Records, AU-07  Audit Record Reduction and Report Generation, AU-12  Audit Record Generation).
+
+Logs shall also be sent to the Research SOC for review (AU-06  Audit Record Review, Analysis, and Reporting).
+
+Audit records have UTC timestamps (AU-08  Time Stamps).
+
+We shall have sufficient log storage, currently 70TB,  for 2 years of logs (AU-04  Audit Log Storage Capacity).
+
+Logs shall be kept for at least 2 years (AU-11  Audit Record Retention).
+
+Squadcast is used for alerting on system failures (AU-05  Response to Audit Logging Process Failures).
+
+Logs and audit information are secured for access only by the Chile DevOps team(AU-09  Protection of Audit Information).
+
+
+\subsection{Certification, Accreditation, and Security Assessments (CA)} \label{sec:CA}
+We are a small team however we regularly assess our security posture and adjust where needed (CA-02  Control Assessments).
+We shall carry out PEN testing nominally annually but at least every other year.
+Training was organised for the Chile DevOps team and some individuals will pursue accreditation/certification.
+
+\subsection{Configuration Management (CM)} \label{sec:CM}
+
+Higher level or broader changes go to an operations CCB \citeds{RTN-072} (CM-01  Policy and Procedures).
+Otherwise we run almost exclusively infrastructure as code - our baseline is in github.
+Changes follow the DM change process - reviews and tests required for any change (CM-03  Configuration Change Control).
+
+
+The applications deployed and their configurations are all dealt with via our phalanx\footnote{\url{https://phalanx.lsst.io}} system (CM-02  Baseline Configuration, CM-08  System Component Inventory).
+
+Pixel data is only located in the pixel zone and embargo rack (CM-12  Information Location).
+
+
+We do not have a definitions of high-risk areas and therefore we do not apply specific configurations to devices during travel.
+
+\subsection{Contingency Planning (CP)} \label{sec:CP}
+Disaster recovery and incident reporting is covered in \citeds{RTN-030} (CP-01  Policy and Procedures)
+
+\subsection{Identification and Authentication (IA)} \label{sec:IA}
+IA is covered in \citeds{ITTN-010} (IA-01  Policy and Procedures).
+Users are associated with their unique  accounts (IA-02  Identification and Authentication).
+Re-authentication is once per 24 hours (IA-11  Re-Authentication).
+
+Access to the \PZ is via 2FA VPN.
+Devices connection to our networks are know by MAC address.
+
+Typically 1password generated passwords are used and any sharing is done using vaults (IA-05  Authenticator Management).
+Passwords must by at least 8 chars, use 2 character classes and can not be reused for 10 goes.
+
+All new users are known to admins or confirmed by a manager (IA-12  Identity Proofing).
+
+\subsection{Incident Response (IR)} \label{sec:IR}
+Incident response is covered in \citeds{RTN-030} \S3 (IR-01  Policy and Procedures).
+
+\subsection{Maintenance (MA)} \label{sec:MA}
+We have weekly maintenance windows for summit systems, one each for Infrastructure, Applications, and Control System (MA-01  Policy and Procedures)
+
+Activities are tickets and discussed in stand up meetings (MA-02  Controlled Maintenance).
+
+All tools go through the usual procurement process and maintenance equipment does not and will not hold pixel data (MA-03  Maintenance Tools).
+
+Maintenance is carried out by our personnel (MA-05  Maintenance Personnel).
+
+
+\subsection{Media Protection (MP)} \label{sec:MP}
+\PZ is all about protecting data in the embargo period as per \citeds{DMTN-199}(MP-01  Policy and Procedures).
+
+Access is controlled via IPA groups and 2Fa VPN (MP-02  Media Access).
+Data will never be on removable media.
+We do not allow media to be mounted to machines int he pixel zone.
+
+Pixel data exists on disk in only three locations during the embargo period, there are no further backups of this so no copy on removable media.
+
+\subsection{Physical and Environmental Protection (PE)} \label{sec:PE}
+Computer rooms have key card access and are restricted to a limited number of personnel (PE-02  Physical Access Authorizations, PE-03  Physical Access Control).
+Racks have further locks and door sensors installed.
+There are cameras with motion detection functions installed in the computer rooms.
+
+The DWDM (transmission devices) are within the controlled computer room in a locked rack (PE-04  Access Control for Transmission).
+
+Access is logged and logs are kept for up to three years, all the equipment being installed is HID and complies with section 889 of the John S. McCain National Defense Authorization Act (NDAA) (PE-06  Monitoring Physical Access).
+
+Remote work is allowed  from anywhere with access via 2FA VPN (PE-17  Alternate Work Site).
+
+\subsection{Planning (PL)} \label{sec:PL}
+\citeds{RTN-030} provides pointers to the many information security related documents (PL-01  Policy and Procedures).
+
+Rubin has an acceptable use policy  augmented by \citeds{RTN-073}  and \citeds{DMTN-286} for embargoed data  (PL-04  Rules of Behavior).
+
+\subsection{Personnel Security (PS)} \label{sec:PS}
+Only  team members will have access to embargo images.
+All staff are known individuals screened on hiring (PS-01  Policy and Procedures, PS-03  Personnel Screening).
+In kind contributors working with data  are known scientists and all go though FACTs checks to get accounts at USDF.
+
+Where appropriate on termination all account access is removed - some off-boards remain collaborators (PS-04  Personnel Termination).
+
+
+\subsection{Risk Assessment (RA)} \label{sec:RA}
+This is part of our regular risk assessment process \citeds{rdo-71} but we also look in depth at specific applications(RA-01  Policy and Procedures).
+
+Mostly we have concentrated the application exposure in phalanx which is carefully assessed and monitored.
+However we do perform specific security risk assessment where it is considered most needed e.g. \citeds{SQR-041} for the science platform which is one of our major attack surfaces (RA-03  Risk Assessment).
+
+We have conducted external PEN testing and shall do so annually in addition to using available scanning tools (RA-05  Vulnerability Monitoring and Scanning).
+
+\subsection{System and Services Acquisition (SA)} \label{sec:SA}
+Security for our external facing applications have been encapsulated in Phalanx. (SA-01  Policy and Procedures)
+This allows a single team to take care of AAA for all applications  to minimize  the  attack surface.
+The number of applications which can touch the embargoed data is also small and they are behind the 2Fa VPN.
+
+We apply several  principles: (SA-08  Security and Privacy Engineering Principles):
+
+\begin{itemize}
+\item Least Privilege : we try to reduce the number of accounts with privileges
+\item Minimize attack surface:  phalanx really helps with this but also using 2FA and VPN for pixel zone.
+\item Access control mechanisms: we use tokens for inter application access
+\item Defense in depth: we are attempting to know when we have been hit
+\item Open design: our security does not rely on secrecy of design our designs are public
+\item Economy of mechanism: we always attempt the simplest solution
+\end{itemize}
+
+
+Our policy is to replace components before they reach EOL (SA-22  Unsupported System Components).
+
+
+\subsection{System and Communications Protection (SC)} \label{sec:SC}
+\citeds{DMTN-286} and \citeds{SITCOMTN-076} cover communication  for embargoed data (SC-01  Policy and Procedures).
+
+Embargo data are kept on encrypted disks using OS level encryption (SC-04  Information in Shared System Resources).
+2FA VPN is required to access the \PZ.
+We isolate internal traffic on different VLANs.
+Bastion hosts are used for access to deeper internal systems.
+
+Border firewalls prevent some repeated attacks, confirmed by PEN testing (SC-05  Denial-of-service Protection, SC-07  Boundary Protection).
+
+Data transmission to SLAC is via  secure routers with AES-256 encryption (SC-08  Transmission Confidentiality and Integrity).
+
+Connections are rest each 24 hour period (SC-10  Network Disconnect).
+
+Encryption keys are managed by specific key services  (SC-12  Cryptographic Key Establishment and Management).
+
+Embargo data are kept on encrypted disks using OS level encryption at rest (SC-28  Protection of Information at Rest).
+
+
+\subsection{ System and Information Integrity (SI)} \label{sec:SI}
+\citeds{RTN-030} details specific policies (SI-01  Policy and Procedures).
+
+We respond immediately to any security issue.
+It receives top priority.
+Reported vulnerabilities are dealt with within 24 hours (SI-02  Flaw Remediation).
+
