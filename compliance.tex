@@ -56,7 +56,7 @@ Enforce approved authorizations for controlling the flow of CUI within the syste
 
 a. Identify the duties of individuals requiring separation.
 
-b. Define system access authorizations to support separation of duties.}&{P}&{P}&{Principle of least privilege is applied. Some users have access to hosts that is unneeded.} \\ \hline
+b. Define system access authorizations to support separation of duties.}&{V}&{Y}&{Principle of least privilege is applied. Some users have access to hosts that is unneeded.} \\ \hline
 {03.01.05 Least Privilege
 
 a. Allow only authorized system access for users (or processes acting on behalf of users) that is necessary to accomplish assigned organizational tasks.
@@ -65,13 +65,13 @@ b. Authorize access to [Assignment: organization-defined security functions] and
 
 c. Review the privileges assigned to roles or classes of users [Assignment: organization-defined frequency] to validate the need for such privileges.
 
-d. Reassign or remove privileges, as necessary.}&{N}&{P}&{Targeted sudo rules are needed for common operations. IPA controls sudo centrally } \\ \hline
+d. Reassign or remove privileges, as necessary.}&{V}&{Y}&{Targeted sudo rules are needed for common operations. IPA controls sudo centrally } \\ \hline
 {03.01.06 Least Privilege – Privileged Accounts
 
 a. Restrict privileged accounts on the system to [Assignment: organization-defined personnel or roles].
 
 b. Require that users (or roles) with privileged accounts use non-privileged accounts when accessing non-security functions or non-security information.  
-  }&{P}&{N}&{These accounts were specifically target in the Gemini attack - we would rather not use this approach.} \\ \hline
+  }&{V}&{W}&{These accounts were specifically target in the Gemini attack - we would rather not use this approach.} \\ \hline
 {03.01.07 Least Privilege – Privileged Functions
 
 a. Prevent non-privileged users from executing privileged functions.
@@ -174,7 +174,7 @@ a. Provide role-based security training to organizational personnel:
 
 2. When required by system changes or following [Assignment: organization- defined events].
 
-b. Update role-based training content [Assignment: organization-defined frequency] and following [Assignment: organization-defined events].}&{P}&{Y}&{OUO training at SLAC, DMTN-199 training for commissioners, Specific training for satellite catalog handlers.
+b. Update role-based training content [Assignment: organization-defined frequency] and following [Assignment: organization-defined events].}&{V}&{Y}&{OUO training at SLAC, DMTN-199 training for commissioners, Specific training for satellite catalog handlers.
 
 We would like to do more here like capture flag exercises for developers or blue/red teams events.
 
@@ -308,7 +308,7 @@ system configurations].
 
 b. Apply the following security requirements to the systems or components when
 the individuals return from travel: [Assignment: organization-defined security
-requirements].}&{N}&{N}&{Though people self select to remove vaults and carry clean personal devices we do not have a strict policy nor do we have a list of high risk areas. In general there is no data on peoples machines so it is account/password vulnerability we would need to cover.} \\ \hline
+requirements].}&{N}&{Y}&{Though people self select to remove vaults and carry clean personal devices we do not have a strict policy nor do we have a list of high risk areas. In general there is no data on peoples machines so it is account/password vulnerability we would need to cover.} \\ \hline
 {3.5 IDENTIFICATION AND AUTHENTICATION}&&& \\ \hline
 {03.05.01 User Identification and Authentication
 
@@ -758,7 +758,7 @@ b. Provide rules to individuals who require access to the system.
 
 c. Receive a documented acknowledgement from individuals indicating that they have read, understand, and agree to abide by the rules of behavior before authorizing access to CUI and the system.
 
-d. Review and update the rules of behavior [Assignment: organization-defined frequency].}&{P}&{Y}&{Need new AUP} \\ \hline
+d. Review and update the rules of behavior [Assignment: organization-defined frequency].}&{V}&{Y}&{Need new AUP} \\ \hline
 {3.16. System and Services Acquisition}&&& \\ \hline
 {03.16.01 Security Engineering Principles
 
@@ -782,19 +782,18 @@ a. Develop a plan for managing supply chain risks associated with the research a
 
 b. Review and update the supply chain risk management plan [Assignment: organization-defined frequency].
 
-c. Protect the supply chain risk management plan from unauthorized disclosure.}&{N}&{N}&{Not applicable for this project.} \\ \hline
+c. Protect the supply chain risk management plan from unauthorized disclosure.}&{N}&{W}&{Not applicable for this project.} \\ \hline
 {03.17.02 Acquisition Strategies, Tools, and Methods
 
-Develop and implement acquisition strategies, contract tools, and procurement methods to identify, protect against, and mitigate supply chain risks.  }&{N}&{N}&{Not applicable for this project.} \\ \hline
+Develop and implement acquisition strategies, contract tools, and procurement methods to identify, protect against, and mitigate supply chain risks.  }&{N}&{W}&{Not applicable for this project.} \\ \hline
 {03.17.03 Supply Chain Requirements and Processes
 
 a. Establish a process for identifying and addressing weaknesses or deficiencies in the supply chain elements and processes.
 
-b. Enforce the following security requirements to protect against supply chain risks to the system, system components, or system services and to limit the harm or consequences from supply chain-related events: [Assignment: organization- defined security requirements].}&{N}&{N}&{Not applicable for this project.} \\ \hline
+b. Enforce the following security requirements to protect against supply chain risks to the system, system components, or system services and to limit the harm or consequences from supply chain-related events: [Assignment: organization- defined security requirements].}&{N}&{W}&{Not applicable for this project.} \\ \hline
 \textbf{Total NIST800-171 requirements}&\textbf{}&\textbf{98}& \\ \hline
-\textbf{Total Rubin Intends to comply fully with }&\textbf{}&\textbf{91}& \\ \hline
-\textbf{Total Rubin Intends not to comply with }&\textbf{}&\textbf{5}& \\ \hline
-\textbf{Total Rubin Intends to partially comply with }&\textbf{}&\textbf{2}& \\ \hline
+\textbf{Total Rubin Intends to comply fully with }&\textbf{}&\textbf{94}& \\ \hline
 \textbf{Total Rubin Complies with in 2024}&\textbf{}&\textbf{84}& \\ \hline
-\textbf{Total Rubin Partially Complies with in 2024}&\textbf{}&\textbf{4}& \\ \hline
+\textbf{Total Rubin waivers requested }&\textbf{}&\textbf{4}& \\ \hline
+\textbf{Total Rubin variances in 2024}&\textbf{}&\textbf{5}& \\ \hline
 \end{longtable} \normalsize
