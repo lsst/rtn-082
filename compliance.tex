@@ -49,14 +49,14 @@ Off boarding and account disabling  in place - considering active account with m
 See https://ittn-010.lsst.io/} \\ \hline
 {03.01.02 Access Enforcement
 Enforce approved authorizations for logical access to CUI and system resources in
-accordance with applicable access control policies.}&{Y}&{Y}&{IPA groups are in place on the summit restriiiicting users abilities. Legacy systems use the active directory groups for this.} \\ \hline
+accordance with applicable access control policies.}&{Y}&{Y}&{IPA groups are in place on the summit restricting users abilities. Legacy systems use the active directory groups for this.} \\ \hline
 {03.01.03 Information Flow Enforcement
-Enforce approved authorizations for controlling the flow of CUI within the system and between connected systems.}&{Y}&{Y}&{DMTN-199 defines the control flow for pixel data. Its implentation enforces it.} \\ \hline
+Enforce approved authorizations for controlling the flow of CUI within the system and between connected systems.}&{Y}&{Y}&{DMTN-199 defines the control flow for pixel data. Its implementation enforces it.} \\ \hline
 {03.01.04 Separation of Duties
 
 a. Identify the duties of individuals requiring separation.
 
-b. Define system access authorizations to support separation of duties.}&{P}&{P}&{Principle of least privilege is applied. Some users have access to hosts that is unneeded.} \\ \hline
+b. Define system access authorizations to support separation of duties.}&{V}&{Y}&{Principle of least privilege is applied. Some users have access to hosts that is unneeded.} \\ \hline
 {03.01.05 Least Privilege
 
 a. Allow only authorized system access for users (or processes acting on behalf of users) that is necessary to accomplish assigned organizational tasks.
@@ -65,13 +65,15 @@ b. Authorize access to [Assignment: organization-defined security functions] and
 
 c. Review the privileges assigned to roles or classes of users [Assignment: organization-defined frequency] to validate the need for such privileges.
 
-d. Reassign or remove privileges, as necessary.}&{N}&{P}&{Targeted sudo rules are needed for common operations. IPA controls sudo centrally } \\ \hline
+d. Reassign or remove privileges, as necessary.}&{V}&{Y}&{IPA groups are in place for summit  which restrict privileges of individual users.
+Off boarding and account disabling  in place - considering active account with monthly reaffirmation instead. 
+See https://ittn-010.lsst.io/} \\ \hline
 {03.01.06 Least Privilege – Privileged Accounts
 
 a. Restrict privileged accounts on the system to [Assignment: organization-defined personnel or roles].
 
 b. Require that users (or roles) with privileged accounts use non-privileged accounts when accessing non-security functions or non-security information.  
-  }&{P}&{N}&{These accounts were specifically target in the Gemini attack - we would rather not use this approach.} \\ \hline
+  }&{V}&{W}&{These accounts were specifically target in the Gemini attack - we would rather not use this approach.} \\ \hline
 {03.01.07 Least Privilege – Privileged Functions
 
 a. Prevent non-privileged users from executing privileged functions.
@@ -84,7 +86,7 @@ b. We log sudo attempts .} \\ \hline
 a. Enforce a limit of [Assignment: organization-defined number] consecutive invalid logon attempts by a user during a [Assignment: organization-defined time period].
 
 b. Automatically [Selection (one or more): lock the account or node for an [Assignment: organization-defined time period]; lock the account or node until released by an administrator; delay next logon prompt; notify system administrator; take other action] when the maximum number of unsuccessful attempts is exceeded.
-}&{Y}&{Y}&{Web Services such as love, foreman, ipa console, nublado, etc. may need rate limiting. 
+}&{Y}&{Y}&{Web Services such as love, foreman, IPA console, nublado, etc. may need rate limiting. 
 We don't use passwords in ssh hosts, only ssh keys (which many consider more secure).  
 We are not aware of a retry limit for ssh-key access; an appropriate extra level of security would be to not use the default port 22. However, we do limit attempts to 6 with a block of 600 minutes, which will effectively block failed SUDO logins.} \\ \hline
 {03.01.09 System Use Notification. 
@@ -110,7 +112,7 @@ b. Authorize each type of remote system access prior to establishing such connec
 
 c. Route remote access to the system through authorized and managed access control points.
 
-d. Authorize the remote execution of privileged commands and remote access to security-relevant information.}&{Y}&{Y}&{We currently check who and from where is connecting. IPA groups conrol access (and 2FA VPN). Bastion nodes are used to control ingress. UNIX groups are used at SLAC for access control.} \\ \hline
+d. Authorize the remote execution of privileged commands and remote access to security-relevant information.}&{Y}&{Y}&{We currently check who and from where is connecting. IPA groups control access (and 2FA VPN). Bastion nodes are used to control ingress. UNIX groups are used at SLAC for access control.} \\ \hline
 {03.01.13 Withdrawn}&{W}&{}&{Withdrawn in revision 3} \\ \hline
 {03.01.14 Withdrawn}&{W}&{}&{Withdrawn in revision 3} \\ \hline
 {03.01.15 Withdrawn}&{W}&{}&{Withdrawn in revision 3} \\ \hline
@@ -174,7 +176,7 @@ a. Provide role-based security training to organizational personnel:
 
 2. When required by system changes or following [Assignment: organization- defined events].
 
-b. Update role-based training content [Assignment: organization-defined frequency] and following [Assignment: organization-defined events].}&{P}&{Y}&{OUO training at SLAC, DMTN-199 training for commissioners, Specific training for satellite catalog handlers.
+b. Update role-based training content [Assignment: organization-defined frequency] and following [Assignment: organization-defined events].}&{V}&{Y}&{OUO training at SLAC, DMTN-199 training for commissioners, Specific training for satellite catalog handlers.
 
 We would like to do more here like capture flag exercises for developers or blue/red teams events.
 
@@ -245,7 +247,7 @@ b. Review and update the baseline configuration of the system [Assignment: organ
 
 a. Establish, document, and implement the following configuration settings for the system that reflect the most restrictive mode consistent with operational requirements: [Assignment: organization-defined configuration settings].
 
-b. Identify, document, and approve any deviations from established configuration settings.}&{Y}&{Y}&{ConConfiguration settings are defined and documented in the lsst-it rancher, puppet  and phalanx repos. } \\ \hline
+b. Identify, document, and approve any deviations from established configuration settings.}&{Y}&{Y}&{Configuration settings are defined and documented in the lsst-it rancher, puppet  and phalanx repos. } \\ \hline
 {03.04.03 Configuration Change Control
 
 a. Define the types of changes to the system that are configuration-controlled.
@@ -257,7 +259,7 @@ c. Implement and document approved configuration-controlled changes to the
 system.
 
 d. Monitor and review activities associated with configuration-controlled changes
-to the system.}&{Y}&{Y}&{We have an operatons CCB (https://rtn-072.lsst.io/)  and code change process in place which also cover the infrastructure as code. } \\ \hline
+to the system.}&{Y}&{Y}&{We have an operations CCB (https://rtn-072.lsst.io/)  and code change process in place which also cover the infrastructure as code. } \\ \hline
 {03.04.04 Impact Analyses
 
 a. Analyze changes to the system to determine potential security impacts prior to change implementation.
@@ -308,7 +310,7 @@ system configurations].
 
 b. Apply the following security requirements to the systems or components when
 the individuals return from travel: [Assignment: organization-defined security
-requirements].}&{N}&{N}&{Though people self select to remove vaults and carry clean personal devices we do not have a strict policy nor do we have a list of high risk areas. In general there is no data on peoples machines so it is account/password vulnerability we would need to cover.} \\ \hline
+requirements].}&{N}&{Y}&{Though people self select to remove vaults and carry clean personal devices we do not have a strict policy nor do we have a list of high risk areas. In general there is no data on peoples machines so it is account/password vulnerability we would need to cover.} \\ \hline
 {3.5 IDENTIFICATION AND AUTHENTICATION}&&& \\ \hline
 {03.05.01 User Identification and Authentication
 
@@ -357,7 +359,7 @@ d. Store passwords in a cryptographically protected form.
 
 e. Select a new password upon first use after account recovery.
 
-f. Enforce the following composition and complexity rules for passwords: [Assignment: organization-defined composition and complexity rules].}&{Y}&{Y}&{a. For the few system passwords we have  a gnerator is used such as 1password. 
+f. Enforce the following composition and complexity rules for passwords: [Assignment: organization-defined composition and complexity rules].}&{Y}&{Y}&{a. For the few system passwords we have  a generator is used such as 1password. 
 
 b. We do use https://haveibeenpwned.com/Passwords
 
@@ -392,7 +394,7 @@ f. Protect authenticator content from unauthorized disclosure and modification.}
 
 Implement an incident-handling capability that is consistent with the incident
 response plan and includes preparation, detection and analysis, containment,
-eradication, and recovery. }&{Y}&{Y}&{Inceident hadling/response is in place. 
+eradication, and recovery. }&{Y}&{Y}&{Incident handling/response is in place. 
 
 AURA also have insurance for serious incursions.} \\ \hline
 {03.06.02 Incident Monitoring, Reporting, and Response Assistance
@@ -405,7 +407,7 @@ c. Report incident information to [Assignment: organization-defined authorities]
 
 d. Provide an incident response support resource that offers advice and assistance to system users on handling and reporting incidents.}&{Y}&{Y}&{We track and report incidents.
 
-AURA insurance can provide furhter support if needed.} \\ \hline
+AURA insurance can provide further support if needed.} \\ \hline
 {03.06.03 Incident Response Testing
 
 Test the effectiveness of the incident response capability [Assignment: organization-defined frequency].}&{Y}&{Y}&{This was done at least with the PEN testing - which we shall repeat.} \\ \hline
@@ -419,7 +421,7 @@ a. Provide incident response training to system users consistent with assigned r
 
 3. [Assignment: organization-defined frequency] thereafter.
 
-b. Review and update incident response training content [Assignment: organization-defined frequency] and following [Assignment: organization-defined events].}&{Y}&{Y}&{Cyber training includes user level incedent response i.e. who to report attempts to. } \\ \hline
+b. Review and update incident response training content [Assignment: organization-defined frequency] and following [Assignment: organization-defined events].}&{Y}&{Y}&{Cyber training includes user level incident response i.e. who to report attempts to. } \\ \hline
 {03.06.05 Incident Response Plan
 
 a. Develop an incident response plan that:
@@ -478,10 +480,10 @@ On occasion when we have remote assistance credentials are granted for a limited
 {3.8 MEDIA PROTECTION}&&& \\ \hline
 {03.08.01 Media Storage
 
-Physically control and securely store system media that contain CUI.}&{Y}&{Y}&{Pixel Zone and Embago Rack} \\ \hline
+Physically control and securely store system media that contain CUI.}&{Y}&{Y}&{Pixel Zone and Embargo Rack} \\ \hline
 {03.08.02 Media Access
 
-Restrict access to CUI on system media to authorized personnel or roles.}&{Y}&{Y}&{Pixel Zone and Embago Rack} \\ \hline
+Restrict access to CUI on system media to authorized personnel or roles.}&{Y}&{Y}&{Pixel Zone and Embargo Rack} \\ \hline
 {03.08.03 Media Sanitization
 
 Sanitize system media that contain CUI prior to disposal, release out of organizational control, or release for reuse.}&{Y}&{Y}&{We format/clean all devices prior to disposal/reuse.} \\ \hline
@@ -528,7 +530,7 @@ b. When individuals are reassigned or transferred to other positions in the orga
 
 1. Review and confirm the ongoing operational need for current logical and physical access authorizations to the system and facility, and
 
-2. Modify access authorization to correspond with any changes in operational need.}&{Y}&{Y}&{This is the offbording policy. Note that many collaborators retain some level of access even when offbarded.} \\ \hline
+2. Modify access authorization to correspond with any changes in operational need.}&{Y}&{Y}&{This is the off boarding policy. Note that many collaborators retain some level of access even when off boarded.} \\ \hline
 {3.10 PHYSICAL PROTECTION}&&& \\ \hline
 {03.10.01 Physical Access Authorizations 
 
@@ -543,7 +545,7 @@ d. Remove individuals from the facility access list when access is no longer req
 
 a. Monitor physical access to the facility where the system resides to detect and respond to physical security incidents.
 
-b. Review physical access logs [Assignment: organization-defined frequency] and upon occurrence of [Assignment: organization-defined events or potential indications of events].}&{Y}&{Y}&{Security is in place on Cero Pachon and at the entrance to the mountain - though not only for Rubin so not permanently at the observatory. } \\ \hline
+b. Review physical access logs [Assignment: organization-defined frequency] and upon occurrence of [Assignment: organization-defined events or potential indications of events].}&{Y}&{Y}&{Security is in place on Cerro Pachon and at the entrance to the mountain - though not only for Rubin so not permanently at the observatory. } \\ \hline
 {03.10.03 Withdrawn}&{W}&{}&{Withdrawn in revision 3} \\ \hline
 {03.10.04 Withdrawn}&{W}&{}&{Withdrawn in revision 3} \\ \hline
 {03.10.05 Withdrawn}&{W}&{}&{Withdrawn in revision 3} \\ \hline
@@ -638,7 +640,7 @@ b. Implement subnetworks for publicly accessible system components that are phys
 
 c. Connect to external systems only through managed interfaces that consist of boundary protection devices arranged in accordance with an organizational security architecture.}&{Y}&{Y}&{a. We have border scanning devices. 
 
-b. We use vlans and multiple VPNs to segment the network.
+b. We use VLANs and multiple VPNs to segment the network.
 
 c. Bastions are used where needed and 2FA VPN for all users to connect to pixel zone.} \\ \hline
 {03.13.02 Withdrawn}&{W}&{}&{Withdrawn in revision 3} \\ \hline
@@ -758,7 +760,7 @@ b. Provide rules to individuals who require access to the system.
 
 c. Receive a documented acknowledgement from individuals indicating that they have read, understand, and agree to abide by the rules of behavior before authorizing access to CUI and the system.
 
-d. Review and update the rules of behavior [Assignment: organization-defined frequency].}&{P}&{Y}&{Need new AUP} \\ \hline
+d. Review and update the rules of behavior [Assignment: organization-defined frequency].}&{V}&{Y}&{Need new AUP} \\ \hline
 {3.16. System and Services Acquisition}&&& \\ \hline
 {03.16.01 Security Engineering Principles
 
@@ -774,7 +776,7 @@ a. Require the providers of external system services used for the processing, st
 
 b. Define and document user roles and responsibilities with regard to external system services, including shared responsibilities with external service providers.
 
-c. Implement processes, methods, and techniques to monitor security requirement compliance by external service providers on an ongoing basis.}&{Y}&{Y}&{a. No external providors are used for sensitive informaiton.} \\ \hline
+c. Implement processes, methods, and techniques to monitor security requirement compliance by external service providers on an ongoing basis.}&{Y}&{Y}&{a. No external providers are used for sensitive information.} \\ \hline
 {3.17. Supply Chain Risk Management}&&& \\ \hline
 {03.17.01 Supply Chain Risk Management Plan
 
@@ -782,19 +784,18 @@ a. Develop a plan for managing supply chain risks associated with the research a
 
 b. Review and update the supply chain risk management plan [Assignment: organization-defined frequency].
 
-c. Protect the supply chain risk management plan from unauthorized disclosure.}&{N}&{N}&{Not applicable for this project.} \\ \hline
+c. Protect the supply chain risk management plan from unauthorized disclosure.}&{N}&{W}&{Not applicable for this project.} \\ \hline
 {03.17.02 Acquisition Strategies, Tools, and Methods
 
-Develop and implement acquisition strategies, contract tools, and procurement methods to identify, protect against, and mitigate supply chain risks.  }&{N}&{N}&{Not applicable for this project.} \\ \hline
+Develop and implement acquisition strategies, contract tools, and procurement methods to identify, protect against, and mitigate supply chain risks.  }&{N}&{W}&{Not applicable for this project.} \\ \hline
 {03.17.03 Supply Chain Requirements and Processes
 
 a. Establish a process for identifying and addressing weaknesses or deficiencies in the supply chain elements and processes.
 
-b. Enforce the following security requirements to protect against supply chain risks to the system, system components, or system services and to limit the harm or consequences from supply chain-related events: [Assignment: organization- defined security requirements].}&{N}&{N}&{Not applicable for this project.} \\ \hline
+b. Enforce the following security requirements to protect against supply chain risks to the system, system components, or system services and to limit the harm or consequences from supply chain-related events: [Assignment: organization- defined security requirements].}&{N}&{W}&{Not applicable for this project.} \\ \hline
 \textbf{Total NIST800-171 requirements}&\textbf{}&\textbf{98}& \\ \hline
-\textbf{Total Rubin Intends to comply fully with }&\textbf{}&\textbf{91}& \\ \hline
-\textbf{Total Rubin Intends not to comply with }&\textbf{}&\textbf{5}& \\ \hline
-\textbf{Total Rubin Intends to partially comply with }&\textbf{}&\textbf{2}& \\ \hline
+\textbf{Total Rubin Intends to comply fully with }&\textbf{}&\textbf{94}& \\ \hline
 \textbf{Total Rubin Complies with in 2024}&\textbf{}&\textbf{84}& \\ \hline
-\textbf{Total Rubin Partially Complies with in 2024}&\textbf{}&\textbf{4}& \\ \hline
+\textbf{Total Rubin waivers requested }&\textbf{}&\textbf{4}& \\ \hline
+\textbf{Total Rubin variances in 2024}&\textbf{}&\textbf{5}& \\ \hline
 \end{longtable} \normalsize
