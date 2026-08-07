@@ -1,6 +1,6 @@
 \tiny \begin{longtable} {|p{0.5\textwidth}|p{0.05\textwidth}|p{0.05\textwidth}|p{0.4\textwidth} |} \caption{This table provides an overview of the \citeds{NIST.SP.800-171} and Rubin compliance with it. \label{tab:compliance}}\\ 
 \hline 
-\textbf{NIST 800-171r3}&\textbf{2024 Status}&\textbf{Intended Compliance}&\textbf{Note} \\ \hline
+\textbf{NIST 800-171r3}&\textbf{2026 Status}&\textbf{Intended Compliance}&\textbf{Note} \\ \hline
 {3.1 ACCESS CONTROL}&&& \\ \hline
 {03.01.01 Account Management
 
@@ -73,7 +73,7 @@ See https://ittn-010.lsst.io/} \\ \hline
 a. Restrict privileged accounts on the system to [Assignment: organization-defined personnel or roles].
 
 b. Require that users (or roles) with privileged accounts use non-privileged accounts when accessing non-security functions or non-security information.  
-  }&{V}&{W}&{These accounts were specifically target in the Gemini attack - we would rather not use this approach.} \\ \hline
+  }&{V}&{W}&{These accounts were specifically target in the Gemini attack - we would rather not use this approach but it was recmmeded in the first standards review. } \\ \hline
 {03.01.07 Least Privilege – Privileged Functions
 
 a. Prevent non-privileged users from executing privileged functions.
@@ -92,7 +92,7 @@ We are not aware of a retry limit for ssh-key access; an appropriate extra level
 {03.01.09 System Use Notification. 
 
 Display a system use notification message with privacy and security notices
-consistent with applicable CUI rules before granting access to the system.}&{N}&{Y}&{Check login notices etc. A login banner can be displayed upon login } \\ \hline
+consistent with applicable CUI rules before granting access to the system.}&{P}&{Y}&{Check login notices etc. A login banner can be displayed upon login. Added to network switches, pending servers. Users dont login to servers normally, hence it's low in our priority (partial)} \\ \hline
 {03.01.10 Device Lock
 
 a. Prevent access to the system by [Selection (one or more): initiating a device lock after [Assignment: organization-defined time period] of inactivity; requiring the user to initiate a device lock before leaving the system unattended].
@@ -146,9 +146,10 @@ c. Permit authorized individuals to use external systems to access the organizat
 
 2. Retaining approved system connection or processing agreements with the organizational entities hosting the external systems.
 
-d. Restrict the use of organization-controlled portable storage devices by authorized individuals on external systems.}&{N}&{Y}&{We use mac address for laptops and personal mobile phones can not connect to the control network. 
+d. Restrict the use of organization-controlled portable storage devices by authorized individuals on external systems.}&{Y}&{Y}&{We use mac address for laptops and personal mobile phones can not connect to the control network. 
 We also have a separation with the LHN SSID and VLANs.
-We do not allow external storage devices on the pixel zone.} \\ \hline
+We do not allow external storage devices on the pixel zone.
+See also \citeds{ITTN-976}.} \\ \hline
 {03.01.21 Withdrawn}&{W}&{}&{Withdrawn in revision 3} \\ \hline
 {03.01.22 Publicly Accessible Content
 
@@ -176,7 +177,7 @@ a. Provide role-based security training to organizational personnel:
 
 2. When required by system changes or following [Assignment: organization- defined events].
 
-b. Update role-based training content [Assignment: organization-defined frequency] and following [Assignment: organization-defined events].}&{V}&{Y}&{OUO training at SLAC, DMTN-199 training for commissioners, Specific training for satellite catalog handlers.
+b. Update role-based training content [Assignment: organization-defined frequency] and following [Assignment: organization-defined events].}&{Y}&{Y}&{OUO training at SLAC, DMTN-199 training for commissioners, Specific training for satellite catalog handlers.
 
 We would like to do more here like capture flag exercises for developers or blue/red teams events.
 
@@ -213,14 +214,14 @@ b. Retain audit records for a time period consistent with the records retention 
 
 a. Alert organizational personnel or roles within [Assignment: organization-defined time period] in the event of an audit logging process failure.
 
-b. Take the following additional actions: [Assignment: organization-defined additional actions].}&{N}&{Y}& \\ \hline
+b. Take the following additional actions: [Assignment: organization-defined additional actions].}&{Y}&{Y}&{Logs sent to NL SOC} \\ \hline
 {03.03.05 Audit Record Review, Analysis, and Reporting
 
 a. Review and analyze system audit records [Assignment: organization-defined frequency] for indications and the potential impact of inappropriate or unusual activity.
 
 b. Report findings to organizational personnel or roles.
 
-c. Analyze and correlate audit records across different repositories to gain organization-wide situational awareness.}&{N}&{Y}&{Again shall look for third party contract for this} \\ \hline
+c. Analyze and correlate audit records across different repositories to gain organization-wide situational awareness.}&{Y}&{Y}&{Logs sent to NL SOC} \\ \hline
 {03.03.06 Audit Record Reduction and Report Generation
 
 a. Implement an audit record reduction and report generation capability that supports audit record review, analysis, reporting requirements, and after-the-fact investigations of incidents.
@@ -310,7 +311,7 @@ system configurations].
 
 b. Apply the following security requirements to the systems or components when
 the individuals return from travel: [Assignment: organization-defined security
-requirements].}&{N}&{Y}&{Though people self select to remove vaults and carry clean personal devices we do not have a strict policy nor do we have a list of high risk areas. In general there is no data on peoples machines so it is account/password vulnerability we would need to cover.} \\ \hline
+requirements].}&{Y}&{Y}&{We will comply with AURA policy in this area. Some people also self select to remove vaults and carry clean personal devices. In general there is no data on peoples machines so it is account/password vulnerability.} \\ \hline
 {3.5 IDENTIFICATION AND AUTHENTICATION}&&& \\ \hline
 {03.05.01 User Identification and Authentication
 
@@ -503,7 +504,7 @@ c. Document activities associated with the transport of system media that contai
 
 a. Restrict or prohibit the use of [Assignment: organization-defined types of system media].
 
-b. Prohibit the use of removable system media without an identifiable owner.}&{N}&{Y}&{Can be rolled out with puppet but there are some servers require USB to be enabled but are in the server room. We can disable USB disk mounts at OS level. The machines and filesystem are encrypted so even if someone rebooted a node from a device to allow mounting USB they still could not get any data.} \\ \hline
+b. Prohibit the use of removable system media without an identifiable owner.}&{Y}&{Y}&{rolled out except to systems requiring USB to boot} \\ \hline
 {03.08.08 Withdrawn}&{W}&{}&{Withdrawn in revision 3} \\ \hline
 {03.08.09 System Backup – Cryptographic Protection
 
@@ -760,7 +761,9 @@ b. Provide rules to individuals who require access to the system.
 
 c. Receive a documented acknowledgement from individuals indicating that they have read, understand, and agree to abide by the rules of behavior before authorizing access to CUI and the system.
 
-d. Review and update the rules of behavior [Assignment: organization-defined frequency].}&{V}&{Y}&{Need new AUP} \\ \hline
+d. Review and update the rules of behavior [Assignment: organization-defined frequency].}&{Y}&{Y}&{DMTN-086 and SITCOMTN-076 provide rules and explanations. 
+There is also trainign for use. 
+Slack  users  must acknowledge rules via form before they have access. } \\ \hline
 {3.16. System and Services Acquisition}&&& \\ \hline
 {03.16.01 Security Engineering Principles
 
@@ -795,7 +798,7 @@ a. Establish a process for identifying and addressing weaknesses or deficiencies
 b. Enforce the following security requirements to protect against supply chain risks to the system, system components, or system services and to limit the harm or consequences from supply chain-related events: [Assignment: organization- defined security requirements].}&{N}&{W}&{Not applicable for this project.} \\ \hline
 \textbf{Total NIST800-171 requirements}&\textbf{}&\textbf{98}& \\ \hline
 \textbf{Total Rubin Intends to comply fully with }&\textbf{}&\textbf{94}& \\ \hline
-\textbf{Total Rubin Complies with in 2024}&\textbf{}&\textbf{84}& \\ \hline
+\textbf{Total Rubin Complies with in 2025}&\textbf{}&\textbf{91}& \\ \hline
 \textbf{Total Rubin waivers requested }&\textbf{}&\textbf{4}& \\ \hline
-\textbf{Total Rubin variances in 2024}&\textbf{}&\textbf{5}& \\ \hline
+\textbf{Total Rubin variances in 2025}&\textbf{}&\textbf{3}& \\ \hline
 \end{longtable} \normalsize
