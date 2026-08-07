@@ -53,4 +53,4 @@ meta.tex: Makefile .FORCE
 # call as needed not automating in this doc
 
 tables: .FORCE
-	makeTablesFromGoogle.py ${GSHEET}  matrixR3\!A1:F  
+	makeTablesFromGoogle.py ${GSHEET}  matrixR4\!A1:F  
